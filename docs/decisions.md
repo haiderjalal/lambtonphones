@@ -57,6 +57,18 @@ themselves, keyed by an HMAC of the IP. No extra table is needed.
 **Anti-spam uses a honeypot and a rate limit, not a CAPTCHA.** This is the least intrusive option
 that works. Add Cloudflare Turnstile if spam becomes a problem.
 
+**The client address comes from the last `x-forwarded-for` entry.** Each proxy appends the address it
+received, so the last entry is the one the platform saw. The first entry is supplied by the visitor and
+could change on every request, which would let someone bypass the enquiry rate limit. The host must sit
+behind a proxy that sets this header, as Vercel does.
+
+**The CSP also blocks inline event attributes, frames, workers and plugins.** `script-src-attr`,
+`frame-src`, `worker-src` and `object-src` are set to `none`. The site does not use any of them.
+
+**Keys stay out of committed files.** `.env.example` holds a placeholder for the service role key. The
+real value belongs only in `.env.local`, which is gitignored. Rotate the key in Supabase if it was ever
+shared or committed.
+
 **The Content-Security-Policy keeps `'unsafe-inline'` for scripts.** Next.js inlines small bootstrap
 scripts. A nonce-based policy would require every page to render per request, which would remove
 static caching. Cross-site scripting is mitigated by React's escaping, the absence of
@@ -69,6 +81,22 @@ is signed in but not an admin is blocked at each layer.
 
 **Supabase Auth rate-limits sign-in attempts.** This project does not add a second limit on the
 admin login. Enable multi-factor authentication in Supabase for admin accounts before launch.
+
+## Performance
+
+**The quote form loads when it nears the viewport.** Its validation and form code is about 70 KB
+compressed. It is fetched only when its space comes within 600 px of the viewport, and the space is
+reserved so the layout does not jump. The homepage's first JavaScript load fell from about 242 KB to
+about 174 KB as a result.
+
+**Caching is split by how often things change.** Static photos in `public/images` are sent with a one
+week browser cache. Optimised Supabase photos are kept for a day instead of the default minute.
+
+**Costs removed.** The unused `cn` npm package is gone. The header and the hero caption no longer use
+backdrop blur, which is costly to paint while scrolling.
+
+**Fonts are not trimmed.** Fraunces and Geist are loaded in full. Requesting only part of Fraunces's
+axes made its download larger, so the default was kept.
 
 ## Open items and known limits
 
