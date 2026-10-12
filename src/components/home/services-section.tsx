@@ -23,7 +23,7 @@ export function ServicesSection({ services }: ServicesSectionProps) {
       <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((service, index) => (
           <li key={service.id}>
-            <Reveal delayMs={index * 80} className="h-full">
+            <Reveal depth delayMs={index * 80} className="h-full">
               <ServiceCard service={service} />
             </Reveal>
           </li>

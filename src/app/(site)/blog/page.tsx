@@ -4,6 +4,7 @@ import { EmptyState } from '@/components/shared/empty-state';
 import { PageHeader } from '@/components/shared/page-header';
 import { Section } from '@/components/shared/section';
 import { PostCard } from '@/components/blog/post-card';
+import { Reveal } from '@/components/shared/reveal';
 import { ROUTES } from '@/constants/routes';
 import { BLOG_BANNER_IMAGE } from '@/constants/site-images';
 import { buildPageMetadata } from '@/lib/seo';
@@ -40,7 +41,9 @@ export default async function BlogPage() {
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <li key={post.id}>
-                <PostCard post={post} />
+                <Reveal depth className="h-full">
+                  <PostCard post={post} />
+                </Reveal>
               </li>
             ))}
           </ul>

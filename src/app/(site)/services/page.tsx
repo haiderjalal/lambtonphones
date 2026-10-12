@@ -1,4 +1,5 @@
 import { CtaSection } from '@/components/home/cta-section';
+import { Reveal } from '@/components/shared/reveal';
 import { PageHeader } from '@/components/shared/page-header';
 import { Section } from '@/components/shared/section';
 import { ServiceCard } from '@/components/services/service-card';
@@ -35,7 +36,9 @@ export default async function ServicesPage() {
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service) => (
               <li key={service.id}>
-                <ServiceCard service={service} className="h-full" />
+                <Reveal depth className="h-full">
+                  <ServiceCard service={service} />
+                </Reveal>
               </li>
             ))}
           </ul>

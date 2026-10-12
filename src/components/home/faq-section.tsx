@@ -27,7 +27,7 @@ export function FaqSection({ faqs }: FaqSectionProps) {
             Visit the support centre
           </ButtonLink>
         </Reveal>
-        <Reveal delayMs={120} className="lg:col-span-7">
+        <Reveal depth delayMs={120} className="lg:col-span-7">
           <FaqList items={faqs} />
         </Reveal>
       </div>

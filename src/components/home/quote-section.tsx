@@ -40,17 +40,19 @@ export function QuoteSection() {
           />
           <ol className="mt-10 grid gap-6">
             {STEPS.map(({ icon: Icon, title, text }, index) => (
-              <li key={title} className="flex gap-4">
-                <span className="bg-accent text-accent-foreground flex size-11 shrink-0 items-center justify-center rounded-xl">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
-                    Step {index + 1}
-                  </p>
-                  <h3 className="text-brand-ink mt-1 font-semibold">{title}</h3>
-                  <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{text}</p>
-                </div>
+              <li key={title}>
+                <Reveal depth delayMs={index * 120} className="flex gap-4">
+                  <span className="bg-accent text-accent-foreground flex size-11 shrink-0 items-center justify-center rounded-xl">
+                    <Icon className="size-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <p className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+                      Step {index + 1}
+                    </p>
+                    <h3 className="text-brand-ink mt-1 font-semibold">{title}</h3>
+                    <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{text}</p>
+                  </div>
+                </Reveal>
               </li>
             ))}
           </ol>
@@ -65,7 +67,7 @@ export function QuoteSection() {
           </figure>
         </Reveal>
 
-        <Reveal delayMs={120} className="lg:col-span-7">
+        <Reveal depth delayMs={120} className="lg:col-span-7">
           <div className="border-border bg-card rounded-lg border p-6 sm:p-8">
             <QuoteForm source="quote_form" defaultServiceType="Phone Repair" />
           </div>

@@ -1,6 +1,7 @@
 import { AnimatedCounter } from '@/components/shared/animated-counter';
 import { Container } from '@/components/shared/container';
 import { Reveal } from '@/components/shared/reveal';
+import { TiltCard } from '@/components/shared/tilt-card';
 
 interface Stat {
   value: number;
@@ -23,17 +24,17 @@ export function StatsSection() {
       <Container>
         <div className="grid grid-cols-2 gap-px border-y border-white/10 bg-white/10 lg:grid-cols-4">
           {STATS.map((stat, index) => (
-            <Reveal
-              key={stat.label}
-              delayMs={index * 110}
-              className="bg-brand-ink px-5 py-12 sm:px-8 lg:py-16"
-            >
-              <p className="text-brand-glow font-display text-5xl leading-none whitespace-nowrap tabular-nums">
-                <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
-              </p>
-              <p className="mt-4 max-w-[15rem] text-sm leading-relaxed text-slate-400">
-                {stat.label}
-              </p>
+            <Reveal key={stat.label} depth delayMs={index * 110} className="bg-brand-ink">
+              <TiltCard>
+                <div className="h-full px-5 py-12 sm:px-8 lg:py-16">
+                  <p className="text-brand-glow font-display text-5xl leading-none whitespace-nowrap tabular-nums">
+                    <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+                  </p>
+                  <p className="mt-4 max-w-[15rem] text-sm leading-relaxed text-slate-400">
+                    {stat.label}
+                  </p>
+                </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

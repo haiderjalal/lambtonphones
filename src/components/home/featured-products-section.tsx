@@ -30,7 +30,7 @@ export function FeaturedProductsSection({ products }: FeaturedProductsSectionPro
       <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((product, index) => (
           <li key={product.id}>
-            <Reveal delayMs={index * 80} className="h-full">
+            <Reveal depth delayMs={index * 80} className="h-full">
               <ProductCard product={product} />
             </Reveal>
           </li>
