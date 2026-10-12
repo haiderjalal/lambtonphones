@@ -5,11 +5,16 @@ import { describe, expect, it } from 'vitest';
 
 import {
   ABOUT_BANNER_IMAGE,
+  BLOG_BANNER_IMAGE,
+  CONTACT_BANNER_IMAGE,
   CTA_BACKGROUND_IMAGE,
   HERO_BACKGROUND_IMAGE,
   HERO_PHONE_IMAGE,
+  QUOTE_DESK_IMAGE,
   SERVICE_IMAGES,
+  SERVICES_BANNER_IMAGE,
   SHOP_BANNER_IMAGE,
+  SUPPORT_BANNER_IMAGE,
 } from '@/constants/site-images';
 import type { SiteImage } from '@/types/site-image';
 
@@ -19,8 +24,13 @@ const STATIC_IMAGES: SiteImage[] = [
   HERO_BACKGROUND_IMAGE,
   HERO_PHONE_IMAGE,
   CTA_BACKGROUND_IMAGE,
+  QUOTE_DESK_IMAGE,
   ABOUT_BANNER_IMAGE,
   SHOP_BANNER_IMAGE,
+  SERVICES_BANNER_IMAGE,
+  CONTACT_BANNER_IMAGE,
+  SUPPORT_BANNER_IMAGE,
+  BLOG_BANNER_IMAGE,
   ...Object.values(SERVICE_IMAGES).filter((image): image is SiteImage => image !== undefined),
 ];
 

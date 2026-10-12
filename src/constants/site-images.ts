@@ -24,6 +24,13 @@ export const CTA_BACKGROUND_IMAGE: SiteImage = {
   height: 1280,
 };
 
+export const QUOTE_DESK_IMAGE: SiteImage = {
+  src: '/images/home/quote-desk.webp',
+  alt: '',
+  width: 1600,
+  height: 900,
+};
+
 export const ABOUT_BANNER_IMAGE: SiteImage = {
   src: '/images/pages/about-banner.webp',
   alt: '',
@@ -38,7 +45,38 @@ export const SHOP_BANNER_IMAGE: SiteImage = {
   height: 1067,
 };
 
-/** Card photos for the top-level repair services, keyed by service slug. Other services use their icon. */
+export const SERVICES_BANNER_IMAGE: SiteImage = {
+  src: '/images/pages/services-banner.webp',
+  alt: '',
+  width: 1600,
+  height: 1067,
+};
+
+export const CONTACT_BANNER_IMAGE: SiteImage = {
+  src: '/images/pages/contact-banner.webp',
+  alt: '',
+  width: 1600,
+  height: 844,
+};
+
+export const SUPPORT_BANNER_IMAGE: SiteImage = {
+  src: '/images/pages/support-banner.webp',
+  alt: '',
+  width: 1600,
+  height: 1067,
+};
+
+export const BLOG_BANNER_IMAGE: SiteImage = {
+  src: '/images/pages/blog-banner.webp',
+  alt: '',
+  width: 1600,
+  height: 1067,
+};
+
+/**
+ * Card photos for repair services, keyed by service slug. Top-level services and device pages both
+ * use this map. Any service without an entry falls back to its icon.
+ */
 export const SERVICE_IMAGES: Readonly<Record<string, SiteImage | undefined>> = {
   'phone-repair': {
     src: '/images/services/phone-repair.webp',
@@ -69,5 +107,29 @@ export const SERVICE_IMAGES: Readonly<Record<string, SiteImage | undefined>> = {
     alt: '',
     width: 1000,
     height: 750,
+  },
+  'iphone-repair': {
+    src: '/images/services/iphone-repair.webp',
+    alt: '',
+    width: 1000,
+    height: 563,
+  },
+  'samsung-repair': {
+    src: '/images/services/samsung-repair.webp',
+    alt: '',
+    width: 1000,
+    height: 562,
+  },
+  'google-repair': {
+    src: '/images/services/google-repair.webp',
+    alt: '',
+    width: 1000,
+    height: 560,
+  },
+  'other-repair': {
+    src: '/images/services/other-repair.webp',
+    alt: '',
+    width: 1000,
+    height: 563,
   },
 };

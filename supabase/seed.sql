@@ -247,3 +247,200 @@ on conflict (slug) do nothing;
 --    insert into public.admin_users (user_id, email)
 --    values ('<auth-user-uuid>', '<admin-email>')
 --    on conflict (user_id) do nothing;
+
+-- ---------------------------------------------------------------------------
+-- Blog posts (general repair advice written for the site; review before launch)
+-- ---------------------------------------------------------------------------
+
+-- Rows are matched on slug, so re-running the seed leaves existing posts unchanged.
+
+insert into public.blog_posts (slug, title, excerpt, body, cover_image_path, is_published, published_at)
+values (
+  'battery-signs-phone-needs-replacing',
+  'How to tell your phone battery needs replacing',
+  'A battery that is wearing out often shows up as fast drain, sudden shutdowns or heat. Here is what to check, and what to do if the phone looks swollen.',
+  $body$Phone batteries wear out slowly. Each charge cycle reduces capacity a little, and heat speeds that up. Most people notice the change gradually, so it helps to know which signs point to the battery rather than to the software.
+
+## Signs to look for
+
+The most common sign is a battery that drains faster than it used to. A phone that lasted a full day last year and now needs charging by mid-afternoon may have a tired battery. First check whether one app is using most of the power, because that is a software problem and usually easier to fix.
+
+A more reliable sign is an unexpected shutdown. If the phone switches off at 30 percent, or drops from 20 percent straight to zero, the battery can no longer supply enough power when the phone is under load. This often happens when you open the camera or a game.
+
+Heat is another warning sign. Phones get warm while charging, but a phone that is hot to touch during normal use, or one that becomes very hot on a flat surface while charging, needs attention.
+
+## Check the battery health figure
+
+On an iPhone, open Settings, then Battery, then Battery Health and Charging. The Maximum Capacity figure shows how much of the original capacity remains. A reading under about 80 percent is a good reason to have the battery checked.
+
+Android menus differ by brand and model. Look under Settings, then Battery, for an entry called battery health or battery information. Not every Android phone reports a health percentage, and the numbers are estimates, so use them as a guide rather than an exact measurement.
+
+## If the battery looks swollen
+
+**Stop using the phone and stop charging it** if the back panel is lifting, the screen is pushing away from the frame, or the phone no longer sits flat on a table. A swollen lithium battery can become a fire risk.
+
+Keep the phone away from heat, and do not press on it or try to open it. Do not put it in the household bin. Bring it in for a check and ask how it should be handled. Our technicians can check the battery health and tell you whether a replacement makes sense.
+
+Until someone has checked it, keep the phone off the charger and somewhere cool.$body$,
+  'blog/battery-signs-phone-needs-replacing.webp',
+  true,
+  '2026-09-16T09:00:00Z'
+)
+on conflict (slug) do nothing;
+
+insert into public.blog_posts (slug, title, excerpt, body, cover_image_path, is_published, published_at)
+values (
+  'slow-phone-charging-checks',
+  'Why your phone charges slowly, and what to check first',
+  'Most slow charging comes from the cable, the adapter, the port or the case rather than the battery. Check those first before you assume the phone needs a repair.',
+  $body$A phone that charges slowly is frustrating, but the cause is usually something you can check in a few minutes. Start with the parts that connect the phone to the power, and look at the battery only after the simpler causes are ruled out.
+
+## Check the cable and the adapter
+
+A cable has to carry the current the phone asks for. A worn, frayed or bent cable can limit charging speed, and cheap cables are not always built for fast charging. If your phone uses USB-C, check that the cable is rated for the wattage you need.
+
+The adapter matters just as much. A phone can only draw as much power as the adapter supplies. A USB-A port on an older charger usually delivers much less power than a USB-C port that supports power delivery, so a phone that charges quickly on one may be slow on the other. Test with an adapter and cable you know work to see whether the speed changes.
+
+## Clean the charging port
+
+Lint and pocket debris can build up in the port and stop the cable from seating fully. Shine a torch into the port and look for grey fluff or dust.
+
+Clean it with a wooden or plastic toothpick, moving gently and only as far as you need to. Never use a metal tool or a pin, because a metal tip can short the contacts inside the port.
+
+## Wireless charging and cases
+
+Wireless chargers depend on alignment. The phone must sit centred on the charging coil. A case that is too thick, or one with a metal plate, can reduce the power that reaches the battery. Try the charger without the case to see whether the speed changes.
+
+## When to get it checked
+
+An older battery can charge more slowly, and some phones slow charging when the battery is warm or worn. Work through these checks before you assume the battery is the problem:
+
+- **Cable:** swap it for one you know is rated for fast charging.
+- **Adapter:** test with a USB-C adapter you trust, rated for the phone.
+- **Port:** confirm the cable sits firmly and nothing is trapped inside.
+- **Case and charger:** remove the case and centre the phone on the wireless pad.
+
+If the phone still charges slowly with a good cable, a working adapter and a clean port, the battery or the charging hardware may need a closer look. Our technicians can check the port and battery and tell you which part is causing the slow charge.
+
+Change one part at a time and note what changes, so you can explain exactly what you have already tried.$body$,
+  'blog/slow-phone-charging-checks.webp',
+  true,
+  '2026-09-23T09:00:00Z'
+)
+on conflict (slug) do nothing;
+
+insert into public.blog_posts (slug, title, excerpt, body, cover_image_path, is_published, published_at)
+values (
+  'water-damage-first-hour',
+  'What to do if your phone gets wet',
+  'Water damage often gets worse in the hours and days after it happens. Switch the phone off, keep it away from power and heat, and bring it in for a check.',
+  $body$Water and phones do not mix, but a quick response helps. Most of the damage happens when a wet phone is switched on, charged or heated, so the first hour matters more than anything you do later.
+
+## Do this straight away
+
+Switch the phone off if it is still on. A powered phone can short out where water has reached the circuit board. If you can remove the case and the SIM tray without force, do so, because water can collect behind both.
+
+Dry the outside gently with a soft cloth, then rest the phone on a dry towel with the charging port facing down so that any water can drain out. Do not keep pressing buttons or switching the phone back on to test it.
+
+## Avoid these common mistakes
+
+Do not plug the phone in or try to charge it, even if it seems to work. Charging a wet phone can cause a short circuit.
+
+Do not open the phone yourself. Pulling it apart exposes the internal parts to more moisture and can break the adhesive and seals that help keep water out.
+
+Do not use a hair dryer or a heater. Heat can damage the screen and battery, and it can push moisture into places where it is harder to remove.
+
+Do not put the phone in a bag of rice. Rice does not remove moisture effectively, and it can leave dust and starch in the port and speaker openings. Leave the phone somewhere dry and airy instead, with the case and SIM tray off if you removed them.
+
+## Watch for delayed damage
+
+Corrosion can take days to show up. The phone may seem fine at first and then develop a crackling speaker or a battery that drains quickly.
+
+If the water was salty, chlorinated or came from a drink, mention it when you bring the phone in. Those liquids can leave residue that makes corrosion more likely.
+
+A water resistance rating such as IP68 describes how the phone performed when it was tested new, under specific conditions. It does not mean the phone is protected against every liquid or every kind of exposure. Cracks, worn seals and a previous drop can all reduce that protection, so treat a rating as a limit rather than a guarantee.
+
+Our technicians can check the phone for moisture and corrosion, even if it appears to work.
+
+Until a technician has checked it, keep the phone switched off and away from chargers.$body$,
+  'blog/water-damage-first-hour.webp',
+  true,
+  '2026-09-30T09:00:00Z'
+)
+on conflict (slug) do nothing;
+
+insert into public.blog_posts (slug, title, excerpt, body, cover_image_path, is_published, published_at)
+values (
+  'back-up-before-phone-repair',
+  'Back up your phone before any repair',
+  'A backup protects your photos and messages if something goes wrong during a repair. Check that it finished, and keep your passcode and account details ready.',
+  $body$Many phone repairs keep your data, but a backup is the only reliable protection if something goes wrong. Make a backup before you hand the phone over, and check that it actually finished.
+
+## Back up to iCloud or Google
+
+On an iPhone, open Settings, tap your name, then iCloud, then iCloud Backup. Tap Back Up Now and wait for it to finish. The screen shows the date and time of the last successful backup, so check that it is recent.
+
+On an Android phone, look for Backup in the Google settings or the system settings. Menu names vary by brand and version, but the backup screen should show when it last ran and what it includes.
+
+## Check that everything important is covered
+
+A device backup is not the same as photo sync. iCloud Photos and Google Photos are separate services, and they only keep your photos up to date when they are switched on. Check your photo library in the cloud, or copy the photos to a computer or an external drive.
+
+Messaging apps such as WhatsApp keep their own backups, so check their settings separately. Also note any app that holds codes you need, such as an authenticator app, and make sure you can sign in to it without this phone.
+
+## Know your access details
+
+Know your phone passcode, your Apple ID or Google account email, and the password for that account. Two-step verification codes may be sent to another device, so make sure you can reach it. Keep these details in a password manager rather than on a note attached to the phone.
+
+## What a repair cannot always save
+
+Some data cannot be recovered if the screen is faulty or the board has failed. A backup covers much of what is on the phone, but anything that exists only on the device, such as very recent photos or unsynced messages, may be lost.
+
+A technician may need the phone to switch on and respond so they can test the repair. Ask at drop-off what they need from you, including whether you should turn off Find My or Find My Device first.
+
+Before you hand the phone over, confirm that the backup finished and note the time it completed.$body$,
+  'blog/back-up-before-phone-repair.webp',
+  true,
+  '2026-10-03T09:00:00Z'
+)
+on conflict (slug) do nothing;
+
+insert into public.blog_posts (slug, title, excerpt, body, cover_image_path, is_published, published_at)
+values (
+  'screen-protectors-and-cases-explained',
+  'Screen protectors and cases: what actually protects your phone',
+  'A screen protector guards against scratches and small knocks, and a case only helps if it covers the corners. Here is how to choose both, and what neither can prevent.',
+  $body$A screen protector guards against scratches and small knocks, and a case only helps if it covers the corners. Neither one can stop every kind of damage, so it helps to know what each is good at before you buy.
+
+## Tempered glass or film
+
+Tempered glass is a thin sheet of hardened glass. It resists scratches well and can absorb small impacts to the screen. It is firmer and a little thicker than film, so check that it still fits inside your case.
+
+Film is thinner and more flexible. It can be easier to fit on curved screens, but it usually offers less impact protection and marks more easily. Neither type stops a phone from cracking if it lands on a corner.
+
+## Coverage and fit
+
+Check the edge coverage. A protector that only covers the flat centre leaves the curved edges exposed, and many cracks start at the edges. A full-cover protector reaches the edges, but it needs to be designed for your phone's screen shape or it may lift.
+
+Fit matters as much as the product. A protector should sit flat with no gaps at the edges. If it is too big, it can lift when you put the phone in a case.
+
+Choose the protector and the case together. A case with a raised lip around the screen keeps the glass off a flat surface when the phone lands face down.
+
+## What a case has to do
+
+A case only protects if it covers the corners. A thin slip-on case that looks good but has no reinforced corners may do little when the phone lands on an edge. Look for corners made of shock-absorbing material and a lip that stands above the screen.
+
+Choose a case you will keep on. A protective case that you remove every day offers no protection on the day you drop the phone. Check that the buttons and the camera opening are easy to reach, because awkward cutouts often lead people to take a case off.
+
+## When a protector cannot help
+
+A protector cannot stop a drop onto a corner. The force goes into the frame and the glass underneath, and a protector does not change that. The back of the phone is not covered by a screen protector either.
+
+Fitting a protector is a skill. Dust and air bubbles get trapped under a badly fitted protector, and it can be hard to get it straight a second time. Clean the screen with a lint-free cloth, and fit the protector in a dust-free room if you can.
+
+A cracked protector no longer does its job, so replace it as soon as you can.$body$,
+  'blog/screen-protectors-and-cases-explained.webp',
+  true,
+  '2026-10-07T09:00:00Z'
+)
+on conflict (slug) do nothing;
