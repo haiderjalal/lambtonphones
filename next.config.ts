@@ -27,14 +27,20 @@ function buildContentSecurityPolicy(): string {
     // Next.js inlines small bootstrap scripts. Nonces would force every page to render per request
     // and remove static caching, so we keep 'unsafe-inline' and rely on React's escaping instead.
     `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ''}`,
+    // The site never uses inline event handler attributes such as onclick, so they are blocked.
+    "script-src-attr 'none'",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob:",
     "font-src 'self' data:",
     `connect-src 'self' ${supabaseOrigin}${isDevelopment ? ' ws:' : ''}`.trimEnd(),
+    "media-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
+    "frame-src 'none'",
     "frame-ancestors 'none'",
+    "worker-src 'none'",
+    "manifest-src 'self'",
     ...(isDevelopment ? [] : ['upgrade-insecure-requests']),
   ].join('; ');
 }
@@ -43,12 +49,15 @@ const securityHeaders = [
   { key: 'Content-Security-Policy', value: buildContentSecurityPolicy() },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-Frame-Options', value: 'DENY' },
+  { key: 'X-Permitted-Cross-Domain-Policies', value: 'none' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   {
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
   },
   { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+  { key: 'Cross-Origin-Resource-Policy', value: 'same-origin' },
+  { key: 'Origin-Agent-Cluster', value: '?1' },
   ...(isDevelopment
     ? []
     : [
@@ -61,6 +70,11 @@ const adminHeaders = [
   { key: 'Cache-Control', value: 'private, no-store' },
 ];
 
+// Photos in public/images change rarely, so browsers keep them for a week and revalidate in the background.
+const staticImageHeaders = [
+  { key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=2592000' },
+];
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -70,6 +84,8 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Optimised images are reused for a day instead of the default minute, so Supabase photos are not re-processed constantly.
+    minimumCacheTTL: 60 * 60 * 24,
     remotePatterns: supabaseUrl
       ? [
           {
@@ -85,6 +101,7 @@ const nextConfig: NextConfig = {
     return [
       { source: '/:path*', headers: securityHeaders },
       { source: '/admin/:path*', headers: adminHeaders },
+      { source: '/images/:path*', headers: staticImageHeaders },
     ];
   },
 };
