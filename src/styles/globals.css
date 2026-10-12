@@ -304,7 +304,6 @@
     transition:
       transform 0.9s var(--ease-out-quint),
       filter 0.6s ease;
-    will-change: transform;
   }
 
   /* While the pointer is moving the card follows it closely. It eases back when the pointer leaves. */

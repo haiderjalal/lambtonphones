@@ -2,7 +2,7 @@ import { CalendarCheck, FileSearch, MessageSquareText } from 'lucide-react';
 
 import Image from 'next/image';
 
-import { QuoteForm } from '@/components/forms/quote-form';
+import { LazyQuoteForm } from '@/components/forms/lazy-quote-form';
 import { Reveal } from '@/components/shared/reveal';
 import { Section } from '@/components/shared/section';
 import { SectionHeading } from '@/components/shared/section-heading';
@@ -69,7 +69,7 @@ export function QuoteSection() {
 
         <Reveal depth delayMs={120} className="lg:col-span-7">
           <div className="border-border bg-card rounded-lg border p-6 sm:p-8">
-            <QuoteForm source="quote_form" defaultServiceType="Phone Repair" />
+            <LazyQuoteForm source="quote_form" defaultServiceType="Phone Repair" />
           </div>
         </Reveal>
       </div>

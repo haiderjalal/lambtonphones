@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { ContactPanel } from '@/components/contact/contact-panel';
-import { QuoteForm } from '@/components/forms/quote-form';
+import { LazyQuoteForm } from '@/components/forms/lazy-quote-form';
 import { PageHeader } from '@/components/shared/page-header';
 import { Section } from '@/components/shared/section';
 import {
@@ -69,7 +69,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <p className="text-muted-foreground mt-2 mb-8 text-sm">
                 Fields marked with a star are required.
               </p>
-              <QuoteForm
+              <LazyQuoteForm
                 key={`${source}-${product?.id ?? serviceType}`}
                 source={source}
                 defaultServiceType={serviceType}

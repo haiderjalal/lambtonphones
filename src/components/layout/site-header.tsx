@@ -26,7 +26,7 @@ export function SiteHeader({ settings, services }: SiteHeaderProps) {
   }));
 
   return (
-    <header className="border-border/70 bg-background/85 supports-backdrop-filter:bg-background/75 sticky top-0 z-40 border-b backdrop-blur-xl">
+    <header className="border-border bg-background sticky top-0 z-40 border-b">
       <div className="bg-brand-ink hidden text-slate-300 md:block">
         <Container className="flex h-10 items-center justify-between gap-6 text-xs">
           <div className="flex items-center gap-5">

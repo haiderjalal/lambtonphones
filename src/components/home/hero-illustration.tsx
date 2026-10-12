@@ -36,7 +36,7 @@ export function HeroIllustration() {
 
         <div className="absolute top-5 right-5 [transform:translateZ(110px)] sm:top-8 sm:right-8">
           <div className="float-3d">
-            <p className="animate-fade-up border-border bg-card/95 rounded-lg border px-4 py-3 text-xs leading-snug shadow-sm backdrop-blur [animation-delay:700ms]">
+            <p className="animate-fade-up border-border bg-card/95 rounded-lg border px-4 py-3 text-xs leading-snug shadow-sm [animation-delay:700ms]">
               <span className="text-brand-ink block font-medium">Diagnosis first</span>
               <span className="text-muted-foreground block">Quote before any work starts</span>
             </p>
