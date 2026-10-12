@@ -1,0 +1,75 @@
+import {
+  Cable,
+  Camera,
+  Car,
+  BatteryCharging,
+  Gamepad2,
+  HardDrive,
+  Headphones,
+  Laptop,
+  Package,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Speaker,
+  Tablet,
+  Wrench,
+  type LucideIcon,
+} from 'lucide-react';
+
+/** Icon keys stored in the database. Must match the `icon` check constraints in the migration. */
+export const SERVICE_ICON_KEYS = [
+  'smartphone',
+  'laptop',
+  'tablet',
+  'gamepad',
+  'hard-drive',
+  'shield-check',
+  'plug',
+  'headphones',
+  'car',
+  'wrench',
+  'battery',
+  'camera',
+  'speaker',
+  'sparkles',
+  'package',
+] as const;
+
+export type ServiceIconKey = (typeof SERVICE_ICON_KEYS)[number];
+
+export const SERVICE_ICON_LABELS: Record<ServiceIconKey, string> = {
+  smartphone: 'Smartphone',
+  laptop: 'Laptop',
+  tablet: 'Tablet',
+  gamepad: 'Console',
+  'hard-drive': 'Storage / drive',
+  'shield-check': 'Protection',
+  plug: 'Charging',
+  headphones: 'Audio',
+  car: 'Car',
+  wrench: 'Repair tools',
+  battery: 'Battery',
+  camera: 'Camera',
+  speaker: 'Speaker',
+  sparkles: 'Highlight',
+  package: 'Accessories',
+};
+
+export const SERVICE_ICONS: Record<ServiceIconKey, LucideIcon> = {
+  smartphone: Smartphone,
+  laptop: Laptop,
+  tablet: Tablet,
+  gamepad: Gamepad2,
+  'hard-drive': HardDrive,
+  'shield-check': ShieldCheck,
+  plug: Cable,
+  headphones: Headphones,
+  car: Car,
+  wrench: Wrench,
+  battery: BatteryCharging,
+  camera: Camera,
+  speaker: Speaker,
+  sparkles: Sparkles,
+  package: Package,
+};

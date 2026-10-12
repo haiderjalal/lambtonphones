@@ -1,0 +1,64 @@
+import { CalendarCheck, FileSearch, MessageSquareText } from 'lucide-react';
+
+import { QuoteForm } from '@/components/forms/quote-form';
+import { Reveal } from '@/components/shared/reveal';
+import { Section } from '@/components/shared/section';
+import { SectionHeading } from '@/components/shared/section-heading';
+
+const STEPS = [
+  {
+    icon: MessageSquareText,
+    title: 'Tell us what happened',
+    text: 'Share your device, the problem and your contact details.',
+  },
+  {
+    icon: FileSearch,
+    title: 'Get a free assessment',
+    text: 'We check the fault and send a clear, no-obligation quote.',
+  },
+  {
+    icon: CalendarCheck,
+    title: 'Drop in or book',
+    text: 'Walk in, or pick a time. Most repairs take under 30 minutes.',
+  },
+] as const;
+
+/** Homepage quote request. Lays out the three steps first so the form feels low-commitment. */
+export function QuoteSection() {
+  return (
+    <Section id="quote" labelledBy="quote-heading">
+      <div className="grid items-start gap-12 lg:grid-cols-12">
+        <Reveal className="lg:col-span-5">
+          <SectionHeading
+            eyebrow="Free quote"
+            titleId="quote-heading"
+            title="Tell us what is wrong. We will do the rest."
+            description="Send the details below and our team will come back with a clear, no-obligation quote."
+          />
+          <ol className="mt-10 grid gap-6">
+            {STEPS.map(({ icon: Icon, title, text }, index) => (
+              <li key={title} className="flex gap-4">
+                <span className="bg-accent text-accent-foreground flex size-11 shrink-0 items-center justify-center rounded-xl">
+                  <Icon className="size-5" aria-hidden="true" />
+                </span>
+                <div>
+                  <p className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+                    Step {index + 1}
+                  </p>
+                  <h3 className="text-brand-ink mt-1 font-semibold">{title}</h3>
+                  <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+
+        <Reveal delayMs={120} className="lg:col-span-7">
+          <div className="border-border bg-card rounded-3xl border p-6 shadow-xl shadow-slate-900/5 sm:p-8">
+            <QuoteForm source="quote_form" defaultServiceType="Phone Repair" />
+          </div>
+        </Reveal>
+      </div>
+    </Section>
+  );
+}

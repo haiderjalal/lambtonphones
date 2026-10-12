@@ -1,0 +1,2 @@
+# Store and check out text files with LF endings on every platform, so Prettier's LF check passes on Windows clones.
+* text=auto eol=lf
