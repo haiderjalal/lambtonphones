@@ -45,7 +45,7 @@ export function ServiceCard({ service, parentSlug, className }: ServiceCardProps
         <div className="flex flex-1 flex-col p-6">
           <span
             className={cn(
-              'bg-accent text-accent-foreground flex size-10 items-center justify-center rounded-md',
+              'bg-accent text-accent-foreground relative z-10 flex size-10 items-center justify-center rounded-md',
               photo && 'ring-card -mt-12 ring-4',
             )}
           >
