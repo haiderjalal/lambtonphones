@@ -18,7 +18,7 @@ export function ContactPanel({ settings }: ContactPanelProps) {
 
   return (
     <div className="grid gap-5">
-      <Card className="border-border/80 shadow-sm">
+      <Card className="border-border/80">
         <CardHeader>
           <CardTitle className="text-brand-ink flex items-center gap-3 text-lg">
             <span className="bg-accent text-accent-foreground flex size-10 items-center justify-center rounded-xl">
@@ -40,7 +40,7 @@ export function ContactPanel({ settings }: ContactPanelProps) {
         </CardContent>
       </Card>
 
-      <Card className="border-border/80 shadow-sm">
+      <Card className="border-border/80">
         <CardHeader>
           <CardTitle className="text-brand-ink flex items-center gap-3 text-lg">
             <span className="bg-accent text-accent-foreground flex size-10 items-center justify-center rounded-xl">
@@ -59,7 +59,7 @@ export function ContactPanel({ settings }: ContactPanelProps) {
         </CardContent>
       </Card>
 
-      <Card className="border-border/80 shadow-sm">
+      <Card className="border-border/80">
         <CardHeader>
           <CardTitle className="text-brand-ink flex items-center gap-3 text-lg">
             <span className="bg-accent text-accent-foreground flex size-10 items-center justify-center rounded-xl">
@@ -82,7 +82,7 @@ export function ContactPanel({ settings }: ContactPanelProps) {
         </CardContent>
       </Card>
 
-      <Card className="border-border/80 shadow-sm">
+      <Card className="border-border/80">
         <CardHeader>
           <CardTitle className="text-brand-ink flex items-center gap-3 text-lg">
             <span className="bg-accent text-accent-foreground flex size-10 items-center justify-center rounded-xl">

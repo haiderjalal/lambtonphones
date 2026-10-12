@@ -12,7 +12,7 @@ interface FaqListProps {
  */
 export function FaqList({ items }: FaqListProps) {
   return (
-    <div className="divide-border border-border bg-card divide-y overflow-hidden rounded-2xl border">
+    <div className="divide-border border-border bg-card divide-y overflow-hidden rounded-lg border">
       {items.map((item) => (
         <details key={item.id} className="group open:bg-secondary/40">
           <summary className="text-brand-ink flex cursor-pointer list-none items-center justify-between gap-6 px-6 py-5 text-left text-base font-semibold marker:content-none sm:px-7 [&::-webkit-details-marker]:hidden">

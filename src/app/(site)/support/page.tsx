@@ -6,6 +6,7 @@ import { Section } from '@/components/shared/section';
 import { FaqList } from '@/components/faq/faq-list';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/constants/routes';
+import { SUPPORT_BANNER_IMAGE } from '@/constants/site-images';
 import { buildPageMetadata } from '@/lib/seo';
 import { getFaqs, getSiteSettings } from '@/services/public-content-service';
 import { toTelHref } from '@/utils/format';
@@ -27,6 +28,7 @@ export default async function SupportPage() {
         title="Support and frequently asked questions"
         description="Quick answers about pricing, timing, warranty and payment. If your question is not here, we are happy to help."
         breadcrumbs={[{ label: 'Home', href: ROUTES.home }, { label: 'Support' }]}
+        image={SUPPORT_BANNER_IMAGE}
       />
 
       <Section>
@@ -42,7 +44,7 @@ export default async function SupportPage() {
           </div>
 
           <aside className="lg:col-span-4">
-            <div className="border-border bg-card sticky top-28 grid gap-5 rounded-3xl border p-7 shadow-xl shadow-slate-900/5">
+            <div className="border-border bg-card sticky top-28 grid gap-5 rounded-lg border p-7">
               <p className="text-brand-ink text-lg font-semibold">Still need help?</p>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 Call the shop during opening hours, email us, or send a message and we will reply.

@@ -16,7 +16,7 @@ interface ServiceCardProps {
 
 /**
  * Card linking to a repair service. Top-level services show a photo; device pages fall back to the
- * icon. The icon, hover lift and arrow give feedback without JavaScript.
+ * icon. The photo zooms slowly on hover and the arrow moves, so the card responds without JavaScript.
  */
 export function ServiceCard({ service, parentSlug, className }: ServiceCardProps) {
   const Icon = SERVICE_ICONS[service.icon];
@@ -26,7 +26,7 @@ export function ServiceCard({ service, parentSlug, className }: ServiceCardProps
     <Link
       href={serviceHref(service.slug, parentSlug)}
       className={cn(
-        'group border-border bg-card hover:border-primary/40 hover:shadow-primary/10 relative flex h-full flex-col overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl',
+        'group border-border bg-card hover:border-brand-ink/30 relative flex h-full flex-col overflow-hidden rounded-lg border transition-colors duration-500',
         className,
       )}
     >
@@ -37,7 +37,7 @@ export function ServiceCard({ service, parentSlug, className }: ServiceCardProps
             alt={photo.alt}
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
           />
         </div>
       ) : null}
@@ -45,20 +45,20 @@ export function ServiceCard({ service, parentSlug, className }: ServiceCardProps
       <div className="flex flex-1 flex-col p-6">
         <span
           className={cn(
-            'bg-accent text-accent-foreground relative flex size-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3',
-            photo && 'ring-card -mt-10 ring-4',
+            'bg-accent text-accent-foreground flex size-10 items-center justify-center rounded-md',
+            photo && 'ring-card -mt-12 ring-4',
           )}
         >
-          <Icon className="size-6" aria-hidden="true" />
+          <Icon className="size-5" aria-hidden="true" />
         </span>
         <h3 className="text-brand-ink mt-5 text-lg font-semibold">{service.name}</h3>
         <p className="text-muted-foreground mt-2 flex-1 text-sm leading-relaxed">
           {service.summary}
         </p>
-        <span className="text-primary mt-6 inline-flex items-center gap-1.5 text-sm font-semibold">
-          Explore
+        <span className="text-brand-ink mt-6 inline-flex items-center gap-2 text-sm font-medium">
+          <span className="link-draw">Explore this repair</span>
           <ArrowRight
-            className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+            className="size-4 transition-transform duration-500 group-hover:translate-x-1"
             aria-hidden="true"
           />
         </span>

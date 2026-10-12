@@ -79,7 +79,7 @@ export function QuoteForm({
   if (reference) {
     return (
       <div className={className}>
-        <div className="animate-fade-up flex flex-col items-start gap-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
+        <div className="animate-fade-up flex flex-col items-start gap-4 rounded-lg border border-emerald-200 bg-emerald-50 p-6">
           <span className="animate-pop flex size-12 items-center justify-center rounded-full bg-emerald-600 text-white">
             <CircleCheck className="size-6" aria-hidden="true" />
           </span>

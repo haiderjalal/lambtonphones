@@ -3,6 +3,7 @@ import { PageHeader } from '@/components/shared/page-header';
 import { Section } from '@/components/shared/section';
 import { ServiceCard } from '@/components/services/service-card';
 import { ROUTES } from '@/constants/routes';
+import { SERVICES_BANNER_IMAGE } from '@/constants/site-images';
 import { buildPageMetadata } from '@/lib/seo';
 import { getSiteSettings, getTopLevelServices } from '@/services/public-content-service';
 
@@ -23,6 +24,7 @@ export default async function ServicesPage() {
         title="Repairs for every device you rely on"
         description="Tell us what is wrong and we will diagnose it, explain the options and quote before any work begins."
         breadcrumbs={[{ label: 'Home', href: ROUTES.home }, { label: 'Services' }]}
+        image={SERVICES_BANNER_IMAGE}
       />
       <Section>
         {services.length === 0 ? (

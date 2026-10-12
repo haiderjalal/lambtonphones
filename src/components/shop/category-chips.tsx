@@ -43,7 +43,7 @@ export function CategoryChips({ categories, activeSlug, query }: CategoryChipsPr
                 className={cn(
                   CHIP_BASE,
                   isActive
-                    ? 'border-primary bg-primary text-primary-foreground shadow-primary/20 shadow-md'
+                    ? 'border-primary bg-primary text-primary-foreground'
                     : 'border-border bg-card text-brand-ink hover:border-primary/50 hover:text-primary',
                 )}
               >

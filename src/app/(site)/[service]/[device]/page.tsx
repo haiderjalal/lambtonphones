@@ -77,15 +77,13 @@ export default async function DevicePage({ params }: DevicePageProps) {
             <p className="text-foreground/90 text-lg leading-relaxed">
               {deviceService.description}
             </p>
-            <h2 className="text-brand-ink mt-12 text-2xl font-bold tracking-tight">
-              Common repairs
-            </h2>
+            <h2 className="text-brand-ink mt-12 text-2xl font-normal">Common repairs</h2>
             <div className="mt-6">
               <HighlightList items={deviceService.highlights} />
             </div>
           </div>
           <aside className="lg:col-span-5">
-            <div className="border-border bg-card sticky top-28 rounded-3xl border p-7 shadow-xl shadow-slate-900/5">
+            <div className="border-border bg-card sticky top-28 rounded-lg border p-7">
               <p className="text-primary text-sm font-semibold tracking-wider uppercase">
                 Free diagnostics
               </p>

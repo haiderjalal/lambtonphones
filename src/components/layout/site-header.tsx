@@ -16,7 +16,7 @@ interface SiteHeaderProps {
 }
 
 const NAV_LINK_CLASS =
-  'rounded-full px-3.5 py-2 text-sm font-medium text-brand-ink/80 transition-colors hover:bg-secondary hover:text-brand-ink focus-visible:bg-secondary';
+  'link-draw px-3 py-2 text-sm font-medium text-brand-ink/80 transition-colors hover:text-brand-ink focus-visible:text-brand-ink';
 
 /** Site header: contact bar, logo, navigation and the quote call to action. Server-rendered. */
 export function SiteHeader({ settings, services }: SiteHeaderProps) {
@@ -77,11 +77,7 @@ export function SiteHeader({ settings, services }: SiteHeaderProps) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ButtonLink
-            href={ROUTES.contact}
-            size="lg"
-            className="shadow-primary/20 hidden shadow-md sm:inline-flex"
-          >
+          <ButtonLink href={ROUTES.contact} size="lg" className="hidden sm:inline-flex">
             Get a free quote
           </ButtonLink>
           <MobileNav services={serviceLinks} phone={settings.phone} />
@@ -102,7 +98,7 @@ function ServicesMenu({ links }: { links: NavigationLink[] }) {
         />
       </Link>
       <div className="invisible absolute top-full left-0 z-50 pt-3 opacity-0 transition duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-        <ul className="border-border bg-popover w-72 rounded-2xl border p-2 shadow-xl shadow-slate-900/10">
+        <ul className="border-border bg-popover w-72 rounded-lg border p-2">
           {links.map((link) => (
             <li key={link.href}>
               <Link

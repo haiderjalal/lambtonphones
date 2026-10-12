@@ -17,7 +17,7 @@ export default function NotFound() {
     <main className="flex min-h-[70dvh] items-center py-24">
       <Container className="text-center">
         <p className="text-primary text-sm font-semibold tracking-[0.18em] uppercase">Error 404</p>
-        <h1 className="text-brand-ink mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="text-brand-ink mt-4 text-4xl font-normal sm:text-5xl">
           We cannot find that page.
         </h1>
         <p className="text-muted-foreground mx-auto mt-5 max-w-lg text-lg">

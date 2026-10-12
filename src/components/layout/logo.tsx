@@ -32,9 +32,7 @@ export function Logo({ className, showTagline = true }: LogoProps) {
         />
       </svg>
       <span className="leading-tight">
-        <span className="text-brand-ink block text-base font-bold tracking-tight">
-          Lambton Phones
-        </span>
+        <span className="text-brand-ink block text-base font-normal">Lambton Phones</span>
         {showTagline ? (
           <span className="text-muted-foreground block text-[11px] font-semibold tracking-[0.18em] uppercase">
             &amp; Repairs

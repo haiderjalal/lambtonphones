@@ -10,6 +10,7 @@ import {
   type ServiceType,
 } from '@/constants/enquiry';
 import { ROUTES } from '@/constants/routes';
+import { CONTACT_BANNER_IMAGE } from '@/constants/site-images';
 import { buildPageMetadata } from '@/lib/seo';
 import { getProductForEnquiry, getSiteSettings } from '@/services/public-content-service';
 import { firstParam } from '@/utils/search-params';
@@ -51,6 +52,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         title={product ? `Enquire about ${product.name}` : 'Get in touch with our team'}
         description="Send your details and we will reply with a clear answer. Calling us is always an option too."
         breadcrumbs={[{ label: 'Home', href: ROUTES.home }, { label: 'Contact' }]}
+        image={CONTACT_BANNER_IMAGE}
       />
 
       <Section>
@@ -60,8 +62,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="border-border bg-card rounded-3xl border p-6 shadow-xl shadow-slate-900/5 sm:p-8">
-              <h2 className="text-brand-ink text-2xl font-bold tracking-tight">
+            <div className="border-border bg-card rounded-lg border p-6 sm:p-8">
+              <h2 className="text-brand-ink text-2xl font-normal">
                 {product ? 'Tell us about your enquiry' : 'Send us a message'}
               </h2>
               <p className="text-muted-foreground mt-2 mb-8 text-sm">

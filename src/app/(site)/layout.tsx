@@ -13,7 +13,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
     <>
       <a
         href="#main"
-        className="text-brand-ink sr-only z-50 rounded-lg bg-white px-4 py-2 text-sm font-semibold shadow-lg focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        className="text-brand-ink sr-only z-50 rounded-lg bg-white px-4 py-2 text-sm font-semibold focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
       >
         Skip to main content
       </a>

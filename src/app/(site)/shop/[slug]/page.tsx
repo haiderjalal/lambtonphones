@@ -83,7 +83,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-12">
-          <div className="border-border from-secondary via-accent/50 to-secondary relative aspect-[4/3] overflow-hidden rounded-3xl border bg-gradient-to-br lg:col-span-6">
+          <div className="border-border from-secondary via-accent/50 to-secondary relative aspect-[4/3] overflow-hidden rounded-lg border bg-gradient-to-br lg:col-span-6">
             {imageUrl ? (
               <Image
                 src={imageUrl}
@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </p>
             ) : null}
 
-            <div className="border-border bg-card mt-10 grid gap-3 rounded-2xl border p-6 shadow-sm">
+            <div className="border-border bg-card mt-10 grid gap-3 rounded-lg border p-6">
               <p className="text-brand-ink font-semibold">Interested in this accessory?</p>
               <p className="text-muted-foreground text-sm">
                 Send an enquiry with your device model and we will confirm stock and pricing.
@@ -137,7 +137,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {related.length > 0 ? (
         <Section tone="muted" labelledBy="related-heading">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <h2 id="related-heading" className="text-brand-ink text-2xl font-bold tracking-tight">
+            <h2 id="related-heading" className="text-brand-ink text-2xl font-normal">
               More {product.category?.name.toLowerCase() ?? 'accessories'}
             </h2>
             <Link href={ROUTES.shop} className="text-primary text-sm font-semibold hover:underline">

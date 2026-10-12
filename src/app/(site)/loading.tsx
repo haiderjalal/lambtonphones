@@ -13,7 +13,7 @@ export default function SiteLoading() {
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: 4 }, (_, index) => (
-            <div key={index} className="border-border bg-card grid gap-4 rounded-2xl border p-6">
+            <div key={index} className="border-border bg-card grid gap-4 rounded-lg border p-6">
               <Skeleton className="size-12 rounded-xl" />
               <Skeleton className="h-5 w-3/4" />
               <Skeleton className="h-4 w-full" />

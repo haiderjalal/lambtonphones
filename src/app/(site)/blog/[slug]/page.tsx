@@ -58,7 +58,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <Section>
         {coverUrl ? (
-          <div className="border-border relative mb-12 aspect-[16/9] overflow-hidden rounded-3xl border">
+          <div className="border-border relative mb-12 aspect-[16/9] overflow-hidden rounded-lg border">
             <Image
               src={coverUrl}
               alt=""
@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ) : null}
         <MarkdownContent source={post.body} />
 
-        <div className="border-border bg-card mt-16 flex flex-col items-start gap-4 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-border bg-card mt-16 flex flex-col items-start gap-4 rounded-lg border p-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-brand-ink font-semibold">Need a repair? Our technicians can help.</p>
           <ButtonLink href={ROUTES.contact}>Get a free quote</ButtonLink>
         </div>

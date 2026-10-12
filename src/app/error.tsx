@@ -22,7 +22,7 @@ export default function ErrorPage({ reset }: ErrorPageProps) {
         <span className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-red-50 text-red-700">
           <TriangleAlert className="size-8" aria-hidden="true" />
         </span>
-        <h1 className="text-brand-ink mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
+        <h1 className="text-brand-ink mt-6 text-3xl font-normal sm:text-4xl">
           Something went wrong.
         </h1>
         <p className="text-muted-foreground mx-auto mt-4 max-w-lg text-base">
