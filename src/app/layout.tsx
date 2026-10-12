@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         {/* Without JavaScript, scroll-reveal content must still be visible. */}
         <noscript>
-          <style>{'.reveal{opacity:1!important;transform:none!important}'}</style>
+          <style>{'.reveal,.reveal-3d{opacity:1!important;transform:none!important}'}</style>
         </noscript>
       </body>
     </html>

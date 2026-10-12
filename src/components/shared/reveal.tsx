@@ -8,13 +8,15 @@ interface RevealProps {
   children: ReactNode;
   className?: string;
   delayMs?: number;
+  /** Rises and tilts into place in 3D instead of fading in flat. */
+  depth?: boolean;
 }
 
 /**
  * Fades content in once it scrolls into view. The hidden state comes from CSS, so the content is
  * visible in server HTML, with no JavaScript, and under reduced motion. The observer only adds a class.
  */
-export function Reveal({ children, className, delayMs = 0 }: RevealProps) {
+export function Reveal({ children, className, delayMs = 0, depth = false }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export function Reveal({ children, className, delayMs = 0 }: RevealProps) {
   return (
     <div
       ref={ref}
-      className={cn('reveal', className)}
+      className={cn(depth ? 'reveal-3d' : 'reveal', className)}
       style={{ '--reveal-delay': `${delayMs}ms` } as CSSProperties}
     >
       {children}

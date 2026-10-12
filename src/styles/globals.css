@@ -150,6 +150,27 @@
   }
 }
 
+@keyframes enter-3d {
+  from {
+    opacity: 0;
+    transform: perspective(1200px) translate3d(0, 56px, 0) rotateX(16deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-3d {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
 @layer base {
   * {
     border-color: var(--border);
@@ -264,6 +285,105 @@
   .link-draw:focus-visible {
     background-size: 100% 1px;
   }
+
+  /*
+   * 3D tilt. The stage gives its frame perspective, and the frame turns toward the pointer. TiltCard
+   * sets --tilt-x and --tilt-y between -1 and 1, and it only does so for mouse pointers.
+   */
+  .tilt-stage {
+    perspective: 1200px;
+  }
+
+  .tilt-frame {
+    --tilt-x: 0;
+    --tilt-y: 0;
+    --glare-x: 50%;
+    --glare-y: 50%;
+    position: relative;
+    transform: rotateX(calc(var(--tilt-y) * -6deg)) rotateY(calc(var(--tilt-x) * 7deg));
+    transition:
+      transform 0.9s var(--ease-out-quint),
+      filter 0.6s ease;
+    will-change: transform;
+  }
+
+  /* While the pointer is moving the card follows it closely. It eases back when the pointer leaves. */
+  .tilt-frame.is-tilting {
+    transition:
+      transform 0.12s linear,
+      filter 0.6s ease;
+  }
+
+  .tilt-frame:hover {
+    filter: drop-shadow(0 28px 26px rgb(17 23 20 / 0.12));
+  }
+
+  /* A depth frame keeps its children in 3D space, so a child with translateZ sits above the surface. */
+  .tilt-depth {
+    transform-style: preserve-3d;
+  }
+
+  .tilt-depth:hover {
+    filter: none;
+  }
+
+  .tilt-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    pointer-events: none;
+    background: radial-gradient(
+      circle at var(--glare-x) var(--glare-y),
+      rgb(255 255 255 / 0.22),
+      transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .tilt-frame:hover .tilt-glare {
+    opacity: 1;
+  }
+
+  /*
+   * 3D entrance. Scroll-linked where the browser supports timelines. Everywhere else the observer
+   * in Reveal adds is-visible and the same movement plays as a transition.
+   */
+  .reveal-3d {
+    opacity: 0;
+    transform: perspective(1200px) translate3d(0, 56px, 0) rotateX(16deg);
+    transform-origin: 50% 100%;
+    transition:
+      opacity 1s var(--ease-out-quint),
+      transform 1.2s var(--ease-out-quint);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-3d.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .no-js .reveal-3d {
+    opacity: 1;
+    transform: none;
+  }
+
+  @supports (animation-timeline: view()) and (animation-range: entry) {
+    .reveal-3d {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      animation: enter-3d linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 50%;
+    }
+  }
+
+  /* Slow float for elements that sit in front of a photo, such as captions. */
+  .float-3d {
+    animation: float-3d 8s ease-in-out infinite;
+  }
 }
 
 /*
@@ -276,6 +396,9 @@
   }
 
   .reveal,
+  .reveal-3d,
+  .float-3d,
+  .tilt-frame,
   .word,
   .scroll-drift,
   .scroll-reveal,
@@ -293,5 +416,9 @@
 
   .link-draw {
     transition: none;
+  }
+
+  .tilt-glare {
+    display: none;
   }
 }
