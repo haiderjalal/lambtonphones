@@ -11,6 +11,16 @@ with row level security.
 **shadcn/ui and Tailwind 4.** Components are copied into the repository, so they can be changed
 freely. Tokens live in `src/styles/globals.css`, so the whole brand can be re-themed in one place.
 
+**Editorial typography and a warm palette.** Headlines use Fraunces, a soft serif, and body text uses
+Geist, both loaded with `next/font`. The site sits on a warm paper background with deep green actions
+and near-black ink. Gradient text, blurred glow shapes, grid textures and coloured shadows were removed
+because they read as generic. Colours and fonts live in `src/styles/globals.css`.
+
+**Motion is CSS first.** Headline words rise from a mask, photos drift as they scroll, and images
+reveal on entry. Scroll-linked effects use `animation-timeline: view()` behind a feature check, so
+browsers without support show the static layout. Reduced-motion rules are set per element, not with a
+global duration override.
+
 **No animation library.** Scroll reveal, counters and the hero motion are built with CSS and a
 small IntersectionObserver. This keeps the bundle small. Framer Motion would add roughly 30 KB of
 JavaScript for effects that CSS already covers.
@@ -81,6 +91,9 @@ admin login. Enable multi-factor authentication in Supabase for admin accounts b
 
 These items come from the current website and may need correcting. The owner must confirm them.
 
+- **Blog articles:** the five starter articles are general repair advice written for the site, not
+  taken from the current website. They are live now, so review them, or unpublish any the owner does
+  not want, before launch.
 - **Warranty:** 3 months (90 days) on phone repairs. Check the full terms.
 - **Pricing:** repairs "start from $65 and go up to $500". Confirm the range.
 - **Promises:** same-day service in 15 to 20 minutes, Price Beat Guarantee, No Fix No Fee,
