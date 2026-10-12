@@ -193,7 +193,10 @@ on conflict (slug) do nothing;
 -- FAQs (answers restate the business's published website answers)
 -- ---------------------------------------------------------------------------
 
+-- Rows are matched on question text because faqs has no unique key. Re-running the seed must not duplicate answers.
 insert into public.faqs (question, answer, sort_order, is_published)
+select seed.question, seed.answer, seed.sort_order, seed.is_published
+from (
 values
   ('How much does it cost to fix a phone?', 'Pricing depends on the model and manufacturer. Repairs start from $65 and go up to $500. Call us for exact pricing.', 1, true),
   ('How long does a phone repair take?', 'Most repairs are finished in 15 to 30 minutes. Times vary with the model, how busy we are and parts availability.', 2, true),
@@ -201,7 +204,10 @@ values
   ('Do I need an appointment?', 'Walk-ins are welcome and appointments are not required. We recommend calling ahead to check availability.', 4, true),
   ('Are repairs covered by a warranty?', 'Yes. Phone repairs carry a 3-month (90 day) warranty, subject to our terms and conditions. Coverage can vary with the type of repair and the parts used, so ask our team for details.', 5, true),
   ('What forms of payment do you accept?', 'We accept cash, debit cards and major credit cards. Payment options can change, so ask when you visit.', 6, true)
-on conflict do nothing;
+) as seed (question, answer, sort_order, is_published)
+where not exists (
+  select 1 from public.faqs as existing where existing.question = seed.question
+);
 
 -- ---------------------------------------------------------------------------
 -- Pages (draft legal text: review with the business owner before go-live)
