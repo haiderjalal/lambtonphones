@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Phone, ShieldCheck, Timer, BadgeCheck } from 'lucide-react';
 
 import { HeroIllustration } from '@/components/home/hero-illustration';
@@ -5,6 +6,7 @@ import { ButtonLink } from '@/components/shared/button-link';
 import { Container } from '@/components/shared/container';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/constants/routes';
+import { HERO_BACKGROUND_IMAGE } from '@/constants/site-images';
 import { toTelHref } from '@/utils/format';
 import type { SiteSettings } from '@/types/content';
 
@@ -21,6 +23,18 @@ interface HeroSectionProps {
 export function HeroSection({ settings }: HeroSectionProps) {
   return (
     <section className="bg-brand-ink relative overflow-hidden text-white">
+      <Image
+        src={HERO_BACKGROUND_IMAGE.src}
+        alt={HERO_BACKGROUND_IMAGE.alt}
+        fill
+        priority
+        sizes="100vw"
+        className="animate-ken-burns object-cover opacity-40"
+      />
+      <div
+        aria-hidden="true"
+        className="from-brand-ink via-brand-ink/85 to-brand-ink/50 absolute inset-0 bg-gradient-to-r"
+      />
       <div
         aria-hidden="true"
         className="surface-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black,transparent_75%)] opacity-60"

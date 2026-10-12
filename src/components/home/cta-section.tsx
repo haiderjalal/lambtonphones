@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Phone } from 'lucide-react';
 
 import { ButtonLink } from '@/components/shared/button-link';
@@ -5,6 +6,7 @@ import { Container } from '@/components/shared/container';
 import { Reveal } from '@/components/shared/reveal';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/constants/routes';
+import { CTA_BACKGROUND_IMAGE } from '@/constants/site-images';
 import { toTelHref } from '@/utils/format';
 import type { SiteSettings } from '@/types/content';
 
@@ -18,6 +20,14 @@ export function CtaSection({ settings }: CtaSectionProps) {
       aria-labelledby="cta-heading"
       className="bg-brand-ink relative overflow-hidden py-20 text-white"
     >
+      <Image
+        src={CTA_BACKGROUND_IMAGE.src}
+        alt={CTA_BACKGROUND_IMAGE.alt}
+        fill
+        sizes="100vw"
+        className="animate-ken-burns object-cover opacity-35"
+      />
+      <div aria-hidden="true" className="bg-brand-ink/75 absolute inset-0" />
       <div aria-hidden="true" className="surface-grid absolute inset-0 opacity-50" />
       <div
         aria-hidden="true"

@@ -1,8 +1,11 @@
+import Image from 'next/image';
 import { Battery, CircleCheck, Cpu, ShieldCheck } from 'lucide-react';
 
+import { HERO_PHONE_IMAGE } from '@/constants/site-images';
+
 /**
- * Decorative device illustration. Animations are CSS only, and reduced motion turns them off.
- * It is built in SVG and CSS, so it adds no image requests.
+ * Decorative device frame with a repair photo on its screen. Animations are CSS only, and reduced
+ * motion turns them off. The whole frame is hidden from assistive technology.
  */
 export function HeroIllustration() {
   return (
@@ -14,17 +17,16 @@ export function HeroIllustration() {
 
       <div className="animate-float bg-brand-ink-soft relative mx-auto h-full w-[78%] rounded-[2.5rem] border border-white/15 p-3 shadow-2xl shadow-black/40">
         <div className="relative h-full overflow-hidden rounded-[2rem] bg-gradient-to-b from-slate-900 to-slate-950">
-          <div className="absolute inset-x-0 top-3 mx-auto h-5 w-24 rounded-full bg-black" />
+          <Image
+            src={HERO_PHONE_IMAGE.src}
+            alt={HERO_PHONE_IMAGE.alt}
+            fill
+            priority
+            sizes="(min-width: 1024px) 30vw, 70vw"
+            className="object-cover"
+          />
 
-          <div className="absolute inset-x-6 top-16 grid gap-3">
-            <div className="h-2 w-3/4 rounded-full bg-white/10" />
-            <div className="h-2 w-1/2 rounded-full bg-white/10" />
-            <div className="mt-4 grid grid-cols-3 gap-3">
-              {[0, 1, 2].map((item) => (
-                <span key={item} className="aspect-square rounded-2xl bg-white/5" />
-              ))}
-            </div>
-          </div>
+          <div className="absolute inset-x-0 top-3 mx-auto h-5 w-24 rounded-full bg-black" />
 
           <div className="via-brand-glow/25 animate-scan absolute inset-x-0 h-24 bg-gradient-to-b from-transparent to-transparent" />
 

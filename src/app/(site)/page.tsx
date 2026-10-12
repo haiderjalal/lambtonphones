@@ -7,6 +7,7 @@ import { QuoteSection } from '@/components/home/quote-section';
 import { ServicesSection } from '@/components/home/services-section';
 import { StatsSection } from '@/components/home/stats-section';
 import { TrustRibbon } from '@/components/home/trust-ribbon';
+import { WorkshopGallerySection } from '@/components/home/workshop-gallery-section';
 import { JsonLd } from '@/components/shared/json-ld';
 import { SITE_DEFAULT_DESCRIPTION } from '@/constants/site';
 import { buildLocalBusinessJsonLd, buildPageMetadata } from '@/lib/seo';
@@ -28,6 +29,7 @@ export default async function HomePage() {
       <TrustRibbon items={settings.trust_highlights} />
       <StatsSection />
       <ServicesSection services={services} />
+      <WorkshopGallerySection />
       <QuoteSection />
       <GuaranteesSection />
       <FeaturedProductsSection products={featuredProducts} />
