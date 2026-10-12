@@ -2,37 +2,41 @@
 @import 'tw-animate-css';
 
 /*
- * Design tokens. Brand colours are emerald (trust, "fixed" status) on an ink-navy base.
+ * Design tokens. A warm paper base, deep forest green for action and near-black ink for type.
  * Change values here to re-theme the whole site; components read these tokens, never raw hex.
  */
 :root {
-  --background: #f7f9fb;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #059669;
-  --primary-foreground: #ffffff;
-  --secondary: #eef2f6;
-  --secondary-foreground: #0f172a;
-  --muted: #eef2f6;
-  --muted-foreground: #5b6b7f;
-  --accent: #d1fae5;
-  --accent-foreground: #064e3b;
-  --destructive: #dc2626;
+  --background: #f6f4ef;
+  --foreground: #15191a;
+  --card: #fcfbf8;
+  --card-foreground: #15191a;
+  --popover: #fcfbf8;
+  --popover-foreground: #15191a;
+  --primary: #114b3c;
+  --primary-foreground: #f8f6f1;
+  --secondary: #ece8df;
+  --secondary-foreground: #15191a;
+  --muted: #ece8df;
+  --muted-foreground: #5b6461;
+  --accent: #dde9e1;
+  --accent-foreground: #0d3d31;
+  --destructive: #b42318;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #cbd5e1;
-  --ring: #10b981;
-  --radius: 0.75rem;
+  --border: #e0dbd0;
+  --input: #cdc7b8;
+  --ring: #114b3c;
+  --radius: 0.5rem;
 
-  --brand-ink: #0b1220;
-  --brand-ink-soft: #111a2e;
-  --brand-glow: #34d399;
-  --brand-highlight: #f59e0b;
+  --brand-ink: #111714;
+  --brand-ink-soft: #18201c;
+  --brand-glow: #a8d5bf;
+  --brand-highlight: #b08d57;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  /* Easing used across the site: a fast start with a long, quiet settle. */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -64,24 +68,32 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 10px);
+  --radius-2xl: calc(var(--radius) + 8px);
 
   --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 
-  --animate-fade-up: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  --animate-fade-in: fade-in 0.6s ease-out both;
-  --animate-float: float 7s ease-in-out infinite;
-  --animate-float-slow: float 10s ease-in-out infinite;
-  --animate-marquee: marquee 40s linear infinite;
-  --animate-glow: glow 6s ease-in-out infinite;
-  --animate-scan: scan 3.5s ease-in-out infinite;
-  --animate-pop: pop 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
-  --animate-ken-burns: ken-burns 24s ease-out both;
+  --animate-fade-up: fade-up 1s var(--ease-out-quint) both;
+  --animate-fade-in: fade-in 0.9s ease-out both;
+  --animate-clip-up: clip-up 1.4s cubic-bezier(0.7, 0, 0.2, 1) both;
+  --animate-marquee: marquee 48s linear infinite;
+  --animate-pop: pop 0.5s var(--ease-out-quint) both;
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(18px);
+      transform: translateY(14px);
     }
     to {
       opacity: 1;
@@ -98,13 +110,12 @@
     }
   }
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
+  @keyframes clip-up {
+    from {
+      clip-path: inset(100% 0 0 0);
     }
-    50% {
-      transform: translateY(-14px);
+    to {
+      clip-path: inset(0 0 0 0);
     }
   }
 
@@ -116,53 +127,26 @@
       transform: translateX(-50%);
     }
   }
+}
 
-  @keyframes glow {
-    0%,
-    100% {
-      opacity: 0.45;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.8;
-      transform: scale(1.08);
-    }
+/* Scroll-linked motion. Declared at the top level so the keyframes are available to the timelines. */
+@keyframes drift {
+  from {
+    transform: translate3d(0, -5%, 0) scale(1.1);
   }
-
-  @keyframes scan {
-    0%,
-    100% {
-      transform: translateY(-120%);
-      opacity: 0;
-    }
-    15%,
-    85% {
-      opacity: 1;
-    }
-    50% {
-      transform: translateY(120%);
-    }
+  to {
+    transform: translate3d(0, 5%, 0) scale(1.1);
   }
+}
 
-  @keyframes pop {
-    from {
-      opacity: 0;
-      transform: scale(0.6);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+@keyframes scroll-clip {
+  from {
+    clip-path: inset(10% 0 10% 0 round var(--radius));
+    opacity: 0.4;
   }
-
-  /* Slow zoom on background photos. Gives still images a sense of motion without a video. */
-  @keyframes ken-burns {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.1);
-    }
+  to {
+    clip-path: inset(0 0 0 0 round var(--radius));
+    opacity: 1;
   }
 }
 
@@ -181,13 +165,25 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    /* Keeps the fallback font the same visual size as Geist while it loads, so the text does not jump. */
+    font-size-adjust: from-font;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    font-feature-settings: 'ss01', 'cv11';
   }
 
   h1,
-  h2,
-  h3 {
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    letter-spacing: -0.005em;
     text-wrap: balance;
   }
 
@@ -204,13 +200,13 @@
 }
 
 @layer components {
-  /* Scroll-reveal: hidden until the client observer marks the element as visible. */
+  /* Scroll reveal for text and cards: hidden until the client observer marks the element visible. */
   .reveal {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
     transition:
-      opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
-      transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+      opacity 0.9s var(--ease-out-quint),
+      transform 0.9s var(--ease-out-quint);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
@@ -225,40 +221,77 @@
     transform: none;
   }
 
-  .text-gradient-brand {
-    background: linear-gradient(120deg, #34d399 0%, #10b981 40%, #f59e0b 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  /* Headline words rise out of a mask. Each word gets its delay from --delay, set inline. */
+  .word-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
   }
 
-  .surface-grid {
-    background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-    background-size: 48px 48px;
+  .word {
+    display: inline-block;
+    animation: rise 1.1s var(--ease-out-quint) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  /* Background and feature photos drift slowly as they scroll past. Browsers without scroll timelines keep them still. */
+  @supports (animation-timeline: view()) and (animation-range: entry) {
+    .scroll-drift {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    .scroll-reveal {
+      animation: scroll-clip linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+
+  /* Underline that draws in from the left on hover. Used for text links. */
+  .link-draw {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.5s var(--ease-out-quint);
+  }
+
+  .link-draw:hover,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
   }
 }
 
+/*
+ * Reduced motion is handled per element, not with a global duration override. A global override
+ * makes some animations jump or loop faster, which is more jarring than stopping them.
+ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .reveal {
+  .reveal,
+  .word,
+  .scroll-drift,
+  .scroll-reveal,
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-clip-up,
+  .animate-pop,
+  .animate-marquee {
+    animation: none;
+    transition: none;
     opacity: 1;
     transform: none;
+    clip-path: none;
   }
 
-  .animate-ken-burns {
-    animation: none;
+  .link-draw {
+    transition: none;
   }
 }

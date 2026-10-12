@@ -5,7 +5,7 @@ at 33 Alma Rd, New Lambton NSW 2305.
 
 - **Framework:** Next.js 16 (App Router), React 19, TypeScript (strict)
 - **Backend and CMS:** Supabase (PostgreSQL, Auth, Storage) with row level security
-- **UI:** Tailwind CSS 4, shadcn/ui, Lucide icons, `next/font` (Inter), `next/image`
+- **UI:** Tailwind CSS 4, shadcn/ui, Lucide icons, `next/font` (Fraunces headlines, Geist body), `next/image`
 - **Forms:** React Hook Form with Zod, validated in the browser and again on the server
 - **Email:** Resend (optional; enquiries are saved even when email is not configured)
 
