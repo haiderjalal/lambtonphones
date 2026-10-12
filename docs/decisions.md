@@ -99,8 +99,10 @@ These items come from the current website and may need correcting. The owner mus
   equipment claims only if they can be evidenced.
 - **Legal pages:** the privacy policy and terms are drafts. The privacy policy describes how this
   site handles data. Have both reviewed before they go live.
-- **Logo and photography:** the logo is a placeholder mark and no photographs are included. Upload
-  official assets through the CMS or replace `src/components/layout/logo.tsx`.
+- **Logo and photography:** the logo is a placeholder mark. The photos are free stock images from
+  Unsplash (listed in [media-credits.md](media-credits.md)) and show generic repairs, not this shop.
+  Replace them with the business's own photos before launch, and upload official logo assets through
+  the CMS or replace `src/components/layout/logo.tsx`.
 - **Social links:** Facebook and Instagram addresses were taken from the current site.
 
 ## Suggested next steps

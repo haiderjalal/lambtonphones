@@ -88,8 +88,11 @@ Components never query the database. Routes never contain business rules.
 - FAQs use native `<details>`, so they work with no JavaScript.
 - Category filters and search are plain GET forms, so they work with no JavaScript.
 - Images use `next/image` with AVIF and WebP formats. Fonts use `next/font` with `display: swap`.
+  Static site photos live in `public/images` and are listed in `src/constants/site-images.ts`.
+  Accessory photos are stored in the `site-media` bucket and linked from `products.image_path`.
+  Sources are in [media-credits.md](media-credits.md).
 - Animations are CSS and only transform and opacity. They are disabled under
-  `prefers-reduced-motion`.
+  `prefers-reduced-motion`. Background photos zoom slowly (`animate-ken-burns`).
 
 ## Folder conventions
 

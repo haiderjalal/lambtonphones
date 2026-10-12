@@ -8,6 +8,7 @@ import { EmptyState } from '@/components/shared/empty-state';
 import { PageHeader } from '@/components/shared/page-header';
 import { Section } from '@/components/shared/section';
 import { ROUTES } from '@/constants/routes';
+import { SHOP_BANNER_IMAGE } from '@/constants/site-images';
 import { buildPageMetadata } from '@/lib/seo';
 import { getShopPageData } from '@/services/public-content-service';
 import { firstParam } from '@/utils/search-params';
@@ -38,6 +39,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
         title="Accessories to protect and power your devices"
         description="Browse our range of protection, charging, audio and car accessories. Ask for pricing on anything you see."
         breadcrumbs={[{ label: 'Home', href: ROUTES.home }, { label: 'Shop' }]}
+        image={SHOP_BANNER_IMAGE}
       />
 
       <Section>

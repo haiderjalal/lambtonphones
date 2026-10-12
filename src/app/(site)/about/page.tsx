@@ -6,6 +6,7 @@ import { Container } from '@/components/shared/container';
 import { Section } from '@/components/shared/section';
 import { CtaSection } from '@/components/home/cta-section';
 import { ROUTES } from '@/constants/routes';
+import { ABOUT_BANNER_IMAGE } from '@/constants/site-images';
 import { buildPageMetadata } from '@/lib/seo';
 import { getContentPage, getSiteSettings } from '@/services/public-content-service';
 
@@ -28,7 +29,7 @@ export default async function AboutPage() {
 
   return (
     <>
-      <ContentPageView page={page} eyebrow="About us" />
+      <ContentPageView page={page} eyebrow="About us" image={ABOUT_BANNER_IMAGE} />
       <Section tone="muted">
         <Container className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>

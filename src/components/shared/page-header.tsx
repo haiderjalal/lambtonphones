@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react';
+import Image from 'next/image';
 
 import { Container } from '@/components/shared/container';
 import { Breadcrumbs, type BreadcrumbItem } from '@/components/shared/breadcrumbs';
 import { cn } from '@/lib/utils';
+import type { SiteImage } from '@/types/site-image';
 
 interface PageHeaderProps {
   eyebrow?: string;
@@ -10,6 +12,8 @@ interface PageHeaderProps {
   description?: ReactNode;
   breadcrumbs?: BreadcrumbItem[];
   actions?: ReactNode;
+  /** Optional background photo. The header stays readable without it. */
+  image?: SiteImage;
   className?: string;
 }
 
@@ -20,10 +24,27 @@ export function PageHeader({
   description,
   breadcrumbs,
   actions,
+  image,
   className,
 }: PageHeaderProps) {
   return (
     <header className={cn('bg-brand-ink relative overflow-hidden text-white', className)}>
+      {image ? (
+        <>
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="animate-ken-burns object-cover opacity-40"
+          />
+          <div
+            aria-hidden="true"
+            className="from-brand-ink via-brand-ink/85 to-brand-ink/60 absolute inset-0 bg-gradient-to-r"
+          />
+        </>
+      ) : null}
       <div aria-hidden="true" className="surface-grid absolute inset-0 opacity-70" />
       <div
         aria-hidden="true"
