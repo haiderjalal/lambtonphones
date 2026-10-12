@@ -44,7 +44,7 @@ Primary keys are UUIDs. Status-like fields use check constraints, not free text.
 
 - Schema changes are new files in `supabase/migrations`, named with a timestamp. Do not edit an
   applied migration.
-- `seed.sql` uses `on conflict do nothing`, so it can be re-run safely. Review its content before
+- `seed.sql` skips rows that already exist (matched by id, by slug, or by question for FAQs), so it can be re-run safely. Review its content before
   launch. The prices, warranty terms, FAQ answers and legal pages must be confirmed by the business.
 - The first admin is created in Supabase Auth and then linked with the statement at the end of
   `seed.sql`.

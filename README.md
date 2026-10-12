@@ -31,7 +31,8 @@ See [docs/architecture.md](docs/architecture.md) for how the pieces fit together
 
 2. Create a Supabase project, then apply the schema and starter content. In the SQL editor, run
    `supabase/migrations/20261011000000_initial_cms_schema.sql` first, then `supabase/seed.sql`.
-   The Supabase CLI (`supabase db push`) works too.
+   `supabase db push` applies only the migration, so the seed still has to be run separately.
+   Confirm it worked with `select count(*) from public.site_settings;`, which should return 1.
 
 3. Create the first admin. In Supabase Dashboard, go to Authentication, then Users, and create the
    user. Copy the user's UUID and run the statement at the bottom of `supabase/seed.sql`.
