@@ -36,16 +36,21 @@ export function GuaranteesSection() {
         />
       </Reveal>
 
-      <ul className="mt-12 grid gap-6 md:grid-cols-3">
+      <ul className="mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
         {GUARANTEES.map(({ icon: Icon, title, description }, index) => (
           <li key={title}>
-            <Reveal delayMs={index * 100} className="h-full">
-              <article className="border-border bg-card h-full rounded-2xl border p-7 transition-shadow duration-300 hover:shadow-lg hover:shadow-slate-900/5">
-                <span className="bg-primary text-primary-foreground shadow-primary/30 flex size-12 items-center justify-center rounded-xl shadow-md">
-                  <Icon className="size-6" aria-hidden="true" />
-                </span>
-                <h3 className="text-brand-ink mt-6 text-lg font-semibold">{title}</h3>
-                <p className="text-muted-foreground mt-2 text-sm leading-relaxed">{description}</p>
+            <Reveal delayMs={index * 120} className="border-border h-full border-t pt-8">
+              <article>
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-muted-foreground text-sm tabular-nums">
+                    0{index + 1}
+                  </span>
+                  <Icon className="text-primary size-5" aria-hidden="true" />
+                </div>
+                <h3 className="text-brand-ink font-display mt-8 text-2xl leading-tight font-normal">
+                  {title}
+                </h3>
+                <p className="text-muted-foreground mt-4 text-sm leading-relaxed">{description}</p>
               </article>
             </Reveal>
           </li>

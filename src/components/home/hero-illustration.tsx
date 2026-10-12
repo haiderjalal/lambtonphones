@@ -1,91 +1,39 @@
 import Image from 'next/image';
-import { Battery, CircleCheck, Cpu, ShieldCheck } from 'lucide-react';
 
-import { HERO_PHONE_IMAGE } from '@/constants/site-images';
+import { HERO_BACKGROUND_IMAGE, HERO_PHONE_IMAGE } from '@/constants/site-images';
 
 /**
- * Decorative device frame with a repair photo on its screen. Animations are CSS only, and reduced
- * motion turns them off. The whole frame is hidden from assistive technology.
+ * Two overlapping photographs with a caption. The large photo drifts slowly as the page scrolls.
+ * The composition is decorative, so it is hidden from assistive technology.
  */
 export function HeroIllustration() {
   return (
-    <div
-      aria-hidden="true"
-      className="animate-fade-in relative mx-auto aspect-[4/5] w-full max-w-sm"
-    >
-      <div className="from-primary/40 via-brand-glow/10 animate-glow absolute inset-6 rounded-[3rem] bg-gradient-to-br to-transparent blur-2xl" />
+    <div aria-hidden="true" className="relative mx-auto w-full max-w-xl lg:max-w-none">
+      <figure className="animate-clip-up bg-secondary relative aspect-[4/3] overflow-hidden rounded-lg lg:aspect-[4/5]">
+        <Image
+          src={HERO_BACKGROUND_IMAGE.src}
+          alt=""
+          fill
+          priority
+          sizes="(min-width: 1024px) 45vw, 100vw"
+          className="scroll-drift object-cover"
+        />
+      </figure>
 
-      <div className="animate-float bg-brand-ink-soft relative mx-auto h-full w-[78%] rounded-[2.5rem] border border-white/15 p-3 shadow-2xl shadow-black/40">
-        <div className="relative h-full overflow-hidden rounded-[2rem] bg-gradient-to-b from-slate-900 to-slate-950">
-          <Image
-            src={HERO_PHONE_IMAGE.src}
-            alt={HERO_PHONE_IMAGE.alt}
-            fill
-            priority
-            sizes="(min-width: 1024px) 30vw, 70vw"
-            className="object-cover"
-          />
+      <figure className="animate-fade-in border-background bg-card absolute -bottom-8 -left-4 aspect-square w-40 overflow-hidden rounded-lg border-8 [animation-delay:500ms] sm:-left-8 sm:w-52 lg:-left-12 lg:w-60">
+        <Image
+          src={HERO_PHONE_IMAGE.src}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 240px, 208px"
+          className="object-cover"
+        />
+      </figure>
 
-          <div className="absolute inset-x-0 top-3 mx-auto h-5 w-24 rounded-full bg-black" />
-
-          <div className="via-brand-glow/25 animate-scan absolute inset-x-0 h-24 bg-gradient-to-b from-transparent to-transparent" />
-
-          <div className="absolute inset-x-5 bottom-5 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-lg">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
-              <CircleCheck className="size-5" />
-            </span>
-            <div className="min-w-0">
-              <p className="text-brand-ink truncate text-sm font-semibold">Screen replaced</p>
-              <p className="text-muted-foreground text-xs">Tested and ready to go</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <FloatingChip
-        className="animate-float-slow top-14 -left-2"
-        icon={<Battery className="size-4" />}
-        label="Battery health"
-        value="Restored"
-      />
-      <FloatingChip
-        className="animate-float top-1/2 -right-2"
-        icon={<ShieldCheck className="size-4" />}
-        label="Warranty"
-        value="3 months"
-      />
-      <FloatingChip
-        className="animate-float-slow bottom-28 -left-4"
-        icon={<Cpu className="size-4" />}
-        label="Diagnostics"
-        value="Free"
-      />
-    </div>
-  );
-}
-
-function FloatingChip({
-  className,
-  icon,
-  label,
-  value,
-}: {
-  className: string;
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div
-      className={`absolute flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/10 px-3.5 py-2.5 text-white shadow-xl shadow-black/30 backdrop-blur-md ${className}`}
-    >
-      <span className="bg-brand-glow/20 text-brand-glow flex size-8 items-center justify-center rounded-lg">
-        {icon}
-      </span>
-      <span className="leading-tight">
-        <span className="block text-[11px] text-slate-300">{label}</span>
-        <span className="block text-sm font-semibold">{value}</span>
-      </span>
+      <p className="animate-fade-up border-border bg-card/95 absolute top-5 right-5 rounded-lg border px-4 py-3 text-xs leading-snug backdrop-blur [animation-delay:700ms] sm:top-8 sm:right-8">
+        <span className="text-brand-ink block font-medium">Diagnosis first</span>
+        <span className="text-muted-foreground block">Quote before any work starts</span>
+      </p>
     </div>
   );
 }

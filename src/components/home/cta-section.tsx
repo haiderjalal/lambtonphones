@@ -4,7 +4,6 @@ import { Phone } from 'lucide-react';
 import { ButtonLink } from '@/components/shared/button-link';
 import { Container } from '@/components/shared/container';
 import { Reveal } from '@/components/shared/reveal';
-import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/constants/routes';
 import { CTA_BACKGROUND_IMAGE } from '@/constants/site-images';
 import { toTelHref } from '@/utils/format';
@@ -18,56 +17,48 @@ export function CtaSection({ settings }: CtaSectionProps) {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="bg-brand-ink relative overflow-hidden py-20 text-white"
+      className="bg-brand-ink relative overflow-hidden text-white"
     >
       <Image
         src={CTA_BACKGROUND_IMAGE.src}
         alt={CTA_BACKGROUND_IMAGE.alt}
         fill
         sizes="100vw"
-        className="animate-ken-burns object-cover opacity-35"
+        className="scroll-drift object-cover opacity-45"
       />
-      <div aria-hidden="true" className="bg-brand-ink/75 absolute inset-0" />
-      <div aria-hidden="true" className="surface-grid absolute inset-0 opacity-50" />
       <div
         aria-hidden="true"
-        className="bg-primary/30 animate-glow absolute -bottom-40 left-1/2 size-[36rem] -translate-x-1/2 rounded-full blur-3xl"
+        className="from-brand-ink via-brand-ink/80 to-brand-ink/60 absolute inset-0 bg-gradient-to-r"
       />
 
-      <Container className="relative">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="text-brand-glow text-sm font-semibold tracking-[0.18em] uppercase">
-            Expert repairs, walk-ins welcome
+      <Container className="relative py-24 sm:py-32">
+        <Reveal className="max-w-2xl">
+          <p className="text-brand-glow flex items-center gap-3 text-xs font-medium tracking-[0.16em] uppercase">
+            <span aria-hidden="true" className="bg-brand-glow h-px w-8" />
+            Walk-ins welcome
           </p>
-          <h2
-            id="cta-heading"
-            className="mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
-          >
-            Get your device back in working order, today.
+          <h2 id="cta-heading" className="mt-6 text-4xl leading-[1.05] text-balance sm:text-6xl">
+            Bring the device in. We will tell you what it needs.
           </h2>
-          <p className="mt-5 text-lg text-slate-300">
-            Visit us at {settings.street_address}, {settings.suburb}, or call to check availability
-            first.
+          <p className="mt-6 max-w-lg text-lg leading-relaxed text-slate-300">
+            {settings.street_address}, {settings.suburb}. Call first if you want to check
+            availability.
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <ButtonLink
               href={ROUTES.contact}
               size="lg"
-              className="shadow-primary/30 h-12 px-7 text-base shadow-lg"
+              className="bg-brand-glow text-brand-ink hover:bg-brand-glow/90 h-12 px-7 text-base"
             >
               Book a repair
             </ButtonLink>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="h-12 border-white/20 bg-white/5 px-7 text-base text-white hover:bg-white/10 hover:text-white"
+            <a
+              href={toTelHref(settings.phone)}
+              className="link-draw inline-flex items-center gap-2 text-base font-medium text-white"
             >
-              <a href={toTelHref(settings.phone)}>
-                <Phone className="size-4" aria-hidden="true" />
-                {settings.phone}
-              </a>
-            </Button>
+              <Phone className="size-4" aria-hidden="true" />
+              {settings.phone}
+            </a>
           </div>
         </Reveal>
       </Container>

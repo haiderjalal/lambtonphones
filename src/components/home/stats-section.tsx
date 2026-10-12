@@ -20,19 +20,23 @@ const STATS: readonly Stat[] = [
 export function StatsSection() {
   return (
     <section aria-label="Key facts" className="bg-brand-ink text-white">
-      <Container className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-white/10 lg:grid-cols-4">
-        {STATS.map((stat, index) => (
-          <Reveal
-            key={stat.label}
-            delayMs={index * 90}
-            className="bg-brand-ink-soft p-8 text-center sm:p-10"
-          >
-            <p className="text-brand-glow text-4xl font-bold tracking-tight tabular-nums sm:text-5xl">
-              <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-300">{stat.label}</p>
-          </Reveal>
-        ))}
+      <Container>
+        <div className="grid grid-cols-2 gap-px border-y border-white/10 bg-white/10 lg:grid-cols-4">
+          {STATS.map((stat, index) => (
+            <Reveal
+              key={stat.label}
+              delayMs={index * 110}
+              className="bg-brand-ink px-5 py-12 sm:px-8 lg:py-16"
+            >
+              <p className="text-brand-glow font-display text-5xl leading-none whitespace-nowrap tabular-nums">
+                <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+              </p>
+              <p className="mt-4 max-w-[15rem] text-sm leading-relaxed text-slate-400">
+                {stat.label}
+              </p>
+            </Reveal>
+          ))}
+        </div>
       </Container>
     </section>
   );

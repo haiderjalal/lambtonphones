@@ -1,9 +1,12 @@
 import { CalendarCheck, FileSearch, MessageSquareText } from 'lucide-react';
 
+import Image from 'next/image';
+
 import { QuoteForm } from '@/components/forms/quote-form';
 import { Reveal } from '@/components/shared/reveal';
 import { Section } from '@/components/shared/section';
 import { SectionHeading } from '@/components/shared/section-heading';
+import { QUOTE_DESK_IMAGE } from '@/constants/site-images';
 
 const STEPS = [
   {
@@ -51,10 +54,19 @@ export function QuoteSection() {
               </li>
             ))}
           </ol>
+          <figure className="bg-secondary relative mt-12 aspect-[16/9] overflow-hidden rounded-lg">
+            <Image
+              src={QUOTE_DESK_IMAGE.src}
+              alt={QUOTE_DESK_IMAGE.alt}
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="scroll-drift object-cover"
+            />
+          </figure>
         </Reveal>
 
         <Reveal delayMs={120} className="lg:col-span-7">
-          <div className="border-border bg-card rounded-3xl border p-6 shadow-xl shadow-slate-900/5 sm:p-8">
+          <div className="border-border bg-card rounded-lg border p-6 sm:p-8">
             <QuoteForm source="quote_form" defaultServiceType="Phone Repair" />
           </div>
         </Reveal>

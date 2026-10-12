@@ -1,11 +1,9 @@
-import { Sparkles } from 'lucide-react';
-
 interface TrustRibbonProps {
   items: string[];
 }
 
 /**
- * Scrolling ribbon of promises. The list is repeated so the loop is seamless. Duplicates are hidden
+ * Scrolling strip of promises. The list is repeated so the loop is seamless. Duplicates are hidden
  * from assistive technology, and reduced-motion users get a static list through the CSS override.
  */
 export function TrustRibbon({ items }: TrustRibbonProps) {
@@ -15,19 +13,19 @@ export function TrustRibbon({ items }: TrustRibbonProps) {
 
   return (
     <div
-      className="border-border bg-background overflow-hidden border-y"
+      className="border-border bg-card overflow-hidden border-y"
       role="region"
       aria-label="Our promises"
     >
-      <ul className="animate-marquee flex w-max gap-12 py-4 hover:[animation-play-state:paused]">
+      <ul className="animate-marquee flex w-max items-center gap-10 py-5 hover:[animation-play-state:paused]">
         {loop.map((item, index) => (
           <li
             key={`${item}-${index}`}
             aria-hidden={index >= items.length ? true : undefined}
-            className="text-brand-ink flex items-center gap-3 text-sm font-semibold whitespace-nowrap"
+            className="text-brand-ink flex items-center gap-10 text-sm font-medium whitespace-nowrap"
           >
-            <Sparkles className="text-primary size-4" aria-hidden="true" />
             {item}
+            <span aria-hidden="true" className="bg-primary/40 size-1.5 rounded-full" />
           </li>
         ))}
       </ul>

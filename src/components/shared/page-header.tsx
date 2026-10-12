@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import Image from 'next/image';
+import type { ReactNode } from 'react';
 
 import { Container } from '@/components/shared/container';
 import { Breadcrumbs, type BreadcrumbItem } from '@/components/shared/breadcrumbs';
@@ -12,12 +12,12 @@ interface PageHeaderProps {
   description?: ReactNode;
   breadcrumbs?: BreadcrumbItem[];
   actions?: ReactNode;
-  /** Optional background photo. The header stays readable without it. */
+  /** Optional photo shown beside the title. The header reads well without it. */
   image?: SiteImage;
   className?: string;
 }
 
-/** Dark hero band used at the top of inner pages. Keeps headings consistent across the site. */
+/** Editorial page header used at the top of inner pages. Keeps headings consistent across the site. */
 export function PageHeader({
   eyebrow,
   title,
@@ -28,46 +28,46 @@ export function PageHeader({
   className,
 }: PageHeaderProps) {
   return (
-    <header className={cn('bg-brand-ink relative overflow-hidden text-white', className)}>
-      {image ? (
-        <>
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            priority
-            sizes="100vw"
-            className="animate-ken-burns object-cover opacity-40"
-          />
-          <div
-            aria-hidden="true"
-            className="from-brand-ink via-brand-ink/85 to-brand-ink/60 absolute inset-0 bg-gradient-to-r"
-          />
-        </>
-      ) : null}
-      <div aria-hidden="true" className="surface-grid absolute inset-0 opacity-70" />
-      <div
-        aria-hidden="true"
-        className="bg-primary/30 animate-glow absolute -top-24 right-0 size-[28rem] rounded-full blur-3xl"
-      />
-      <Container className="relative py-16 sm:py-20">
-        {breadcrumbs ? <Breadcrumbs items={breadcrumbs} tone="dark" className="mb-6" /> : null}
-        <div className="animate-fade-up max-w-3xl">
-          {eyebrow ? (
-            <p className="text-brand-glow text-sm font-semibold tracking-[0.18em] uppercase">
-              {eyebrow}
-            </p>
-          ) : null}
-          <h1 className="mt-3 text-4xl font-bold tracking-tight text-balance sm:text-5xl">
-            {title}
-          </h1>
-          {description ? (
-            <div className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-              {description}
-            </div>
-          ) : null}
-          {actions ? <div className="mt-8 flex flex-wrap gap-3">{actions}</div> : null}
+    <header className={cn('border-border border-b', className)}>
+      <Container
+        className={cn(
+          'py-14 sm:py-20',
+          image && 'grid items-center gap-12 lg:grid-cols-12 lg:gap-16',
+        )}
+      >
+        <div className={cn(image && 'lg:col-span-7')}>
+          {breadcrumbs ? <Breadcrumbs items={breadcrumbs} className="mb-8" /> : null}
+          <div className="animate-fade-up">
+            {eyebrow ? (
+              <p className="text-muted-foreground flex items-center gap-3 text-xs font-medium tracking-[0.16em] uppercase">
+                <span aria-hidden="true" className="bg-primary h-px w-8" />
+                {eyebrow}
+              </p>
+            ) : null}
+            <h1 className="mt-5 text-4xl leading-[1.05] text-balance sm:text-5xl">{title}</h1>
+            {description ? (
+              <div className="text-muted-foreground mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
+                {description}
+              </div>
+            ) : null}
+            {actions ? <div className="mt-8 flex flex-wrap gap-3">{actions}</div> : null}
+          </div>
         </div>
+
+        {image ? (
+          <div className="lg:col-span-5">
+            <figure className="animate-clip-up bg-secondary relative aspect-[4/3] overflow-hidden rounded-lg">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="scroll-drift object-cover"
+              />
+            </figure>
+          </div>
+        ) : null}
       </Container>
     </header>
   );

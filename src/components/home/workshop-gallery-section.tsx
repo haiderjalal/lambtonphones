@@ -53,7 +53,7 @@ export function WorkshopGallerySection() {
         {WORKSHOP_PHOTOS.map((photo, index) => (
           <li key={photo.src} className={photo.className}>
             <Reveal delayMs={index * 90} className="h-full">
-              <figure className="group bg-brand-ink relative h-full overflow-hidden rounded-2xl">
+              <figure className="group bg-brand-ink relative h-full overflow-hidden rounded-lg">
                 <Image
                   src={photo.src}
                   alt={photo.alt}
