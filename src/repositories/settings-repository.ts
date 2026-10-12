@@ -3,7 +3,7 @@ import 'server-only';
 import { unstable_cache } from 'next/cache';
 
 import { CACHE_TAGS, CONTENT_REVALIDATE_SECONDS } from '@/constants/cache';
-import { databaseError } from '@/repositories/db-error';
+import { databaseError, MissingSeedDataError } from '@/repositories/db-error';
 import { getPublicSupabaseClient } from '@/lib/supabase/public-client';
 import type { SiteSettingsValues } from '@/lib/validations/content';
 import type { SupabaseClient } from '@supabase/supabase-js';
@@ -12,15 +12,18 @@ import type { SiteSettings } from '@/types/content';
 
 const SETTINGS_ROW_ID = 1;
 
+// maybeSingle() rather than single(): a missing row is a setup problem with its own clear message,
+// not a generic PostgREST "cannot coerce the result" error.
 export const getPublishedSiteSettings = unstable_cache(
   async (): Promise<SiteSettings> => {
     const { data, error } = await getPublicSupabaseClient()
       .from('site_settings')
       .select('*')
       .eq('id', SETTINGS_ROW_ID)
-      .single();
+      .maybeSingle();
 
     if (error) throw databaseError(error, 'site_settings.get');
+    if (!data) throw new MissingSeedDataError('site_settings');
 
     return data;
   },
@@ -35,9 +38,10 @@ export async function getSiteSettingsForAdmin(
     .from('site_settings')
     .select('*')
     .eq('id', SETTINGS_ROW_ID)
-    .single();
+    .maybeSingle();
 
   if (error) throw databaseError(error, 'site_settings.getForAdmin');
+  if (!data) throw new MissingSeedDataError('site_settings');
 
   return data;
 }
@@ -71,9 +75,10 @@ export async function updateSiteSettings(
     })
     .eq('id', SETTINGS_ROW_ID)
     .select('*')
-    .single();
+    .maybeSingle();
 
   if (error) throw databaseError(error, 'site_settings.update');
+  if (!data) throw new MissingSeedDataError('site_settings');
 
   return data;
 }
